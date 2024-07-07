@@ -1,3 +1,4 @@
 --target=~
 --ignore=.stowrc
+--ignore='iterm2'
 --ignore=DS_Store
