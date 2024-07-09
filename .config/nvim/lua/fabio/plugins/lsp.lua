@@ -3,6 +3,7 @@ return {
   dependencies = {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
+    "jayp0521/mason-null-ls.nvim",
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-path",
@@ -17,9 +18,7 @@ return {
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
     -- Initialize Mason to manage LSP installations
-    require("mason").setup({
-      ensure_installed = { "prettierd" } -- example: ensure prettierd is installed
-    })
+    require("mason").setup()
 
     -- Configure Mason with lspconfig integration
     require("mason-lspconfig").setup({
@@ -28,13 +27,18 @@ return {
         "tsserver",
         "eslint",
         "tailwindcss",
-        "astro",  -- Example LSP servers, add or remove as needed
+        "astro",
         -- "html",
         -- "svelte",
         -- "gopls",
         -- "biome",
         -- "volar",
       },
+    })
+
+    require("mason-null-ls").setup({
+      ensure_installed = { "prettierd" },
+      automatic_installation = true,
     })
 
     -- Default handler for LSP configurations
