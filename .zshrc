@@ -110,3 +110,6 @@ export NVM_DIR="$HOME/.nvm"
 
 # Brew config
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Atuin config
+eval "$(atuin init zsh)"
