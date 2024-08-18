@@ -3,3 +3,5 @@
 	email = f.dessi@fabiodessi.dev
 [init]
 	defaultBranch = main
+[core]
+	editor = nvim
