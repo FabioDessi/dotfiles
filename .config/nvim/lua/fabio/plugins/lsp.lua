@@ -25,10 +25,10 @@ return {
       ensure_installed = {
         "lua_ls",
         "tsserver",
+        "html",
         "eslint",
         "tailwindcss",
         "astro",
-        -- "html",
         -- "svelte",
         -- "gopls",
         -- "biome",
@@ -201,7 +201,11 @@ return {
     end
 
     -- Setup remaining servers with default configurations
-    local servers = {"tsserver", "tailwindcss"}  -- List any other servers needing default setup
+    local servers = {
+      "tsserver",
+      "tailwindcss"
+    }  -- List any other servers needing default setup
+
     for _, server in ipairs(servers) do
       if not custom_configs[server] then  -- Only apply default if no custom config exists
         default_lsp_setup(server)
