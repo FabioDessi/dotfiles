@@ -9,6 +9,19 @@ return {
   },
 
   config = function ()
-    vim.keymap.set("n", "<leader>n", ":Neotree toggle<CR>", { noremap = true, silent = true })
+    require("neo-tree").setup({
+      filesystem = {
+        filtered_items = {
+          hide_dotfiles = false
+        },
+
+        follow_current_file = {
+          enabled = true,
+          leave_dirs_open = true,
+        },
+      },
+    })
+
+    vim.keymap.set("n", "<leader>n", ":Neotree<CR>", { noremap = true, silent = true })
   end,
 }
