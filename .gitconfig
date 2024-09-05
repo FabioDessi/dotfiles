@@ -5,3 +5,7 @@
 	defaultBranch = main
 [core]
 	editor = nvim
+[mergetool "fugitive"]
+	cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
+[merge]
+	tool = fugitive
