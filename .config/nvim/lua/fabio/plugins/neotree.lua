@@ -12,14 +12,22 @@ return {
     require("neo-tree").setup({
       filesystem = {
         filtered_items = {
-          hide_dotfiles = false
+          hide_dotfiles = false,
+          always_show = { -- uses glob style patterns
+            ".env",
+          },
         },
-
         follow_current_file = {
           enabled = true,
-          leave_dirs_open = true,
+          leave_dirs_open = false,
         },
       },
+      buffers = {
+        follow_current_file = {
+          enabled = true, -- This will find and focus the file in the active buffer every time
+          leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+        },
+      }
     })
 
     vim.keymap.set("n", "<leader>n", ":Neotree<CR>", { noremap = true, silent = true })
