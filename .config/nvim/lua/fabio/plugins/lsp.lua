@@ -10,11 +10,11 @@ return {
     "hrsh7th/nvim-cmp",
     "L3MON4D3/LuaSnip",
     "saadparwaiz1/cmp_luasnip",
-    "nvimtools/none-ls.nvim",  -- Include null-ls as a dependency
+    "nvimtools/none-ls.nvim", -- Include null-ls as a dependency
   },
 
   config = function()
-    local cmp = require"cmp"
+    local cmp = require "cmp"
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
     -- Initialize Mason to manage LSP installations
@@ -29,10 +29,8 @@ return {
         "eslint",
         "tailwindcss",
         "astro",
-        -- "svelte",
-        -- "gopls",
-        -- "biome",
-        -- "volar",
+        "svelte",
+        "gopls",
       },
     })
 
@@ -55,7 +53,7 @@ return {
           capabilities = capabilities,
           on_init = function(client)
             local path = client.workspace_folders[1].name
-            if vim.loop.fs_stat(path..'/.luarc.json') or vim.loop.fs_stat(path..'/.luarc.jsonc') then
+            if vim.loop.fs_stat(path .. '/.luarc.json') or vim.loop.fs_stat(path .. '/.luarc.jsonc') then
               return
             end
             client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
@@ -76,6 +74,14 @@ return {
                 -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
                 -- library = vim.api.nvim_get_runtime_file("", true)
               }
+            })
+          end,
+          on_attach = function(_, bufnr)
+            vim.api.nvim_create_autocmd("BufWritePre", {
+              buffer = bufnr,
+              callback = function()
+                vim.lsp.buf.format()
+              end,
             })
           end,
           settings = {
@@ -124,74 +130,58 @@ return {
         }
       end,
 
-      -- ["gopls"] = function() -- custom handler for gopls
-      --   require("lspconfig").gopls.setup {
-      --     capabilities = capabilities,
-      --     settings = {
-      --       gopls = {
-      --         analyses = {
-      --           unusedparams = true,
-      --         },
-      --         staticcheck = true,
-      --         gofumpt = true,
-      --       },
-      --     },
-      --
-      --     vim.api.nvim_create_autocmd("BufWritePre", {
-      --       pattern = "*.go",
-      --       callback = function()
-      --         local params = vim.lsp.util.make_range_params()
-      --         params.context = {only = {"source.organizeImports"}}
-      --         -- buf_request_sync defaults to a 1000ms timeout. Depending on your
-      --         -- machine and codebase, you may want longer. Add an additional
-      --         -- argument after params if you find that you have to write the file
-      --         -- twice for changes to be saved.
-      --         -- E.g., vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 3000)
-      --         local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params)
-      --         for cid, res in pairs(result or {}) do
-      --           for _, r in pairs(res.result or {}) do
-      --             if r.edit then
-      --               local enc = (vim.lsp.get_client_by_id(cid) or {}).offset_encoding or "utf-16"
-      --               vim.lsp.util.apply_workspace_edit(r.edit, enc)
-      --             end
-      --           end
-      --         end
-      --         vim.lsp.buf.format({async = false})
-      --       end
-      --     })
-      --   }
-      -- end,
+      ["gopls"] = function() -- custom handler for gopls
+        require("lspconfig").gopls.setup {
+          capabilities = capabilities,
+          settings = {
+            gopls = {
+              analyses = {
+                unusedparams = true,
+              },
+              staticcheck = true,
+              gofumpt = true,
+            },
+          },
 
-      -- ["svelte"] = function () -- custom handler for svelte
-      --   require("lspconfig").svelte.setup {
-      --     capabilities = capabilities,
-      --
-      --     on_attach = function(_, bufnr)
-      --       vim.api.nvim_create_autocmd("BufWritePre", {
-      --         buffer = bufnr,
-      --         callback = function()
-      --           vim.lsp.buf.format()
-      --         end,
-      --       })
-      --     end,
-      --   }
-      -- end,
-      --
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            pattern = "*.go",
+            callback = function()
+              local params = vim.lsp.util.make_range_params()
+              params.context = { only = { "source.organizeImports" } }
+              -- buf_request_sync defaults to a 1000ms timeout. Depending on your
+              -- machine and codebase, you may want longer. Add an additional
+              -- argument after params if you find that you have to write the file
+              -- twice for changes to be saved.
+              -- E.g., vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 3000)
+              local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params)
+              for cid, res in pairs(result or {}) do
+                for _, r in pairs(res.result or {}) do
+                  if r.edit then
+                    local enc = (vim.lsp.get_client_by_id(cid) or {}).offset_encoding or "utf-16"
+                    vim.lsp.util.apply_workspace_edit(r.edit, enc)
+                  end
+                end
+              end
+              vim.lsp.buf.format({ async = false })
+            end
+          })
+        }
+      end,
 
-      -- ["biome"] = function()
-      --   require("lspconfig").biome.setup({
-      --     capabilities = capabilities,
-      --
-      --     on_attach = function(_, bufnr)
-      --       vim.api.nvim_create_autocmd("BufWritePre", {
-      --         buffer = bufnr,
-      --         callback = function()
-      --           vim.lsp.buf.format()
-      --         end,
-      --       })
-      --     end,
-      --   })
-      -- end
+      ["svelte"] = function()  -- custom handler for svelte
+        require("lspconfig").svelte.setup {
+          capabilities = capabilities,
+
+          on_attach = function(_, bufnr)
+            vim.api.nvim_create_autocmd("BufWritePre", {
+              buffer = bufnr,
+              callback = function()
+                vim.lsp.buf.format()
+              end,
+            })
+          end,
+        }
+      end,
 
     }
 
@@ -213,7 +203,7 @@ return {
             group = augroup,
             buffer = bufnr,
             callback = function()
-              vim.lsp.buf.format({bufnr = bufnr})
+              vim.lsp.buf.format({ bufnr = bufnr })
             end,
           })
         end
@@ -222,17 +212,17 @@ return {
 
     -- Apply configurations
     for _, config in pairs(custom_configs) do
-      config()  -- Call each custom config function
+      config() -- Call each custom config function
     end
 
     -- Setup remaining servers with default configurations
     local servers = {
       "tsserver",
       "tailwindcss"
-    }  -- List any other servers needing default setup
+    } -- List any other servers needing default setup
 
     for _, server in ipairs(servers) do
-      if not custom_configs[server] then  -- Only apply default if no custom config exists
+      if not custom_configs[server] then -- Only apply default if no custom config exists
         default_lsp_setup(server)
       end
     end
@@ -261,8 +251,8 @@ return {
         { name = "nvim_lsp" },
         { name = "luasnip" }, -- for luasnip users.
       }, {
-          { name = "buffer" },
-        })
+        { name = "buffer" },
+      })
     })
   end
 }

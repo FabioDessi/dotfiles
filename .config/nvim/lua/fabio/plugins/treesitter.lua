@@ -17,10 +17,9 @@ return {
         "css",
         "html",
         "tsx",
-        -- "svelte",
-        -- "go",
-        -- "jsdoc",
-        -- "pug"
+        "svelte",
+        "go",
+        "jsdoc",
       },
 
       indent = {
