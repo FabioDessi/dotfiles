@@ -26,6 +26,7 @@ return {
         "lua_ls",
         "tsserver",
         "html",
+        "cssmodules_ls",
         "eslint",
         "tailwindcss",
         "astro",
@@ -168,7 +169,7 @@ return {
         }
       end,
 
-      ["svelte"] = function()  -- custom handler for svelte
+      ["svelte"] = function() -- custom handler for svelte
         require("lspconfig").svelte.setup {
           capabilities = capabilities,
 
@@ -183,6 +184,19 @@ return {
         }
       end,
 
+      ["tailwindcss"] = function()
+        require("lspconfig").tailwindcss.setup {
+          capabilities = capabilities,
+          root_dir = function(fname)
+            local root_pattern = require("lspconfig").util.root_pattern(
+              "tailwind.config.cjs",
+              "tailwind.config.js",
+              "postcss.config.js"
+            )
+            return root_pattern(fname)
+          end,
+        }
+      end,
     }
 
     -- null-ls setup for additional functionalities like formatting
@@ -217,8 +231,8 @@ return {
 
     -- Setup remaining servers with default configurations
     local servers = {
-      "tsserver",
-      "tailwindcss"
+      "ts_ls",
+      "cssmodules_ls",
     } -- List any other servers needing default setup
 
     for _, server in ipairs(servers) do
