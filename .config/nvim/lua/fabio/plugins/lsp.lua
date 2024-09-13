@@ -110,16 +110,7 @@ return {
       ["astro"] = function()
         require("lspconfig").astro.setup {
           capabilities = capabilities,
-          settings = {
-            astro = {
-              format = {
-                enable = true,
-              },
-              eslint = {
-                enable = true,
-              }
-            }
-          },
+          filetypes = { "astro" },
           on_attach = function(_, bufnr)
             vim.api.nvim_create_autocmd("BufWritePre", {
               buffer = bufnr,
@@ -190,6 +181,7 @@ return {
           root_dir = function(fname)
             local root_pattern = require("lspconfig").util.root_pattern(
               "tailwind.config.cjs",
+              "tailwind.config.mjs",
               "tailwind.config.js",
               "postcss.config.js"
             )
