@@ -2,6 +2,9 @@ require("fabio.set")
 require("fabio.remap")
 require("fabio.lazy_init")
 
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.opt.foldenable = false
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("FabioLspConfig", {}),
   callback = function(ev)
@@ -16,4 +19,3 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, opts)
   end,
 })
-
