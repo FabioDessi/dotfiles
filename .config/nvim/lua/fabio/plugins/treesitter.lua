@@ -20,6 +20,8 @@ return {
         "svelte",
         "go",
         "jsdoc",
+        "regex",
+        "markdown_inline",
       },
 
       indent = {
