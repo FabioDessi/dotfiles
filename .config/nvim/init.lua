@@ -1,1 +1,1 @@
-require("fabio")
+require("fabioMKII.config.lazy")
