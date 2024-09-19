@@ -2,21 +2,28 @@ return {
   {
     "stevearc/conform.nvim",
     config = function()
-      require("conform").setup({
+      local conform = require("conform")
+
+      conform.setup({
         formatters_by_ft = {
-          javascript = { "prettierd" },
-          javascriptreact = { "prettierd" },
-          typescript = { "prettierd" },
-          typescriptreact = { "prettierd" },
+          javascript = { "prettierd", "eslint_d" },
+          javascriptreact = { "prettierd", "eslint_d" },
+          typescript = { "prettierd", "eslint_d" },
+          typescriptreact = { "prettierd", "eslint_d" },
           html = { "prettierd" },
           css = { "prettierd" },
           json = { "prettierd" },
         },
       })
+
+      local augroup = vim.api.nvim_create_augroup("FormatOnSave", { clear = true })
+
       vim.api.nvim_create_autocmd("BufWritePre", {
         pattern = { "*.js", "*.ts", "*.jsx", "*.tsx", "*.html", "*.css", "*.json" },
+        group = augroup,
+
         callback = function(args)
-          require("conform").format({ bufnr = args.buf })
+          conform.format({ bufnr = args.buf, timeout_ms = 2000 })
         end,
       })
     end,

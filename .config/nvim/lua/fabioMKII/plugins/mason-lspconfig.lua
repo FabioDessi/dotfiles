@@ -12,7 +12,6 @@ return {
           "html",
           "cssls",
           "cssmodules_ls",
-          "eslint",
           -- "svelte",
           -- "gopls",
         },
