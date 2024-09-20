@@ -6,10 +6,11 @@ return {
   config = function()
     require("catppuccin").setup({
       flavour = "mocha",
+
       integrations = {
-        noice = true,
         notify = true,
         treesitter = true,
+        cmp = true,
       }
     })
 
