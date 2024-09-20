@@ -36,6 +36,8 @@ return {
       },
 
       ignore_install = {},
+
+      modules = {}
     })
   end
 }
