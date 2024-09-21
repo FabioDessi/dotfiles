@@ -38,7 +38,12 @@ return {
 
         window = {
           completion = cmp.config.window.bordered(),
-          documentation = cmp.config.window.bordered(),
+
+          -- FIX: cmp winhighlight styles (still differs from completion)
+          documentation = cmp.config.window.bordered({
+            winhighlight = "Normal:CmpDocNormal,FloatBorder:FloatBorder,Search:None",
+          }),
+
         },
       })
 
@@ -53,13 +58,6 @@ return {
             }
           }
         }),
-      })
-
-      cmp.setup.cmdline('/', {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = {
-          { name = 'buffer' }
-        }
       })
     end,
   },
