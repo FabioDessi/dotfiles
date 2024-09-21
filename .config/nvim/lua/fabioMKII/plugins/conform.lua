@@ -23,7 +23,7 @@ return {
         group = augroup,
 
         callback = function(args)
-          conform.format({ bufnr = args.buf, timeout_ms = 3500 })
+          conform.format({ bufnr = args.buf, timeout_ms = 5000 })
         end,
       })
     end,
