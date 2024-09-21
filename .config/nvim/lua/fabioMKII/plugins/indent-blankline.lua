@@ -11,7 +11,8 @@ return {
       },
       remove_blankline_trail = false,
     },
-    scope = { enabled = false },
+
+    scope = { enabled = true, show_exact_scope = true },
   },
 
   config = function(_, opts)
