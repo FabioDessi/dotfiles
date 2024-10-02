@@ -12,6 +12,7 @@ return {
           "html",
           "cssls",
           "cssmodules_ls",
+          "bashls",
           -- "svelte",
           -- "gopls",
         },
