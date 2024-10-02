@@ -20,9 +20,15 @@ vim.opt.rtp:prepend(lazypath)
 -- This is also a good place to setup other settings (vim.opt)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = "\\"
+
+-- fold options
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.opt.foldcolumn = "0"
 vim.opt.foldenable = false
+vim.opt.foldtext = ""
+vim.opt.foldnestmax = 4
+
 vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.opt.tabstop = 2
@@ -56,4 +62,3 @@ require("lazy").setup({
   change_detection = { notify = false },
   checker = { enabled = true },
 })
-
