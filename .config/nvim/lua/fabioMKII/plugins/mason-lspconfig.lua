@@ -1,7 +1,11 @@
 return {
   {
     "williamboman/mason-lspconfig.nvim",
-    dependencies = { "neovim/nvim-lspconfig" },
+    dependencies = {
+      "neovim/nvim-lspconfig",
+      "WhoIsSethDaniel/mason-tool-installer.nvim",
+    },
+
     config = function()
       require("mason-lspconfig").setup({
         ensure_installed = {
@@ -45,6 +49,17 @@ return {
         ["astro"] = function(server_name)
           require("fabioMKII.plugins.lsp-config." .. server_name)
         end,
+      })
+
+      require("mason-tool-installer").setup({
+        ensure_installed = {
+          "eslint_d",
+          "luacheck",
+          "shellcheck",
+          "prettierd",
+          "shfmt",
+          "stylua",
+        },
       })
     end,
   },

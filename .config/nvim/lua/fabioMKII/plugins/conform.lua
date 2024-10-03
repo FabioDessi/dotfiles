@@ -1,33 +1,31 @@
 return {
   {
     "stevearc/conform.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+
     config = function()
       local conform = require("conform")
 
       conform.setup({
         formatters_by_ft = {
-          javascript = { "prettierd", "eslint_d" },
-          javascriptreact = { "prettierd", "eslint_d" },
-          typescript = { "prettierd", "eslint_d" },
-          typescriptreact = { "prettierd", "eslint_d" },
+          javascript = { "prettierd" },
+          javascriptreact = { "prettierd" },
+          typescript = { "prettierd" },
+          typescriptreact = { "prettierd" },
           html = { "prettierd" },
           css = { "prettierd" },
           json = { "prettierd" },
-          bash = { 'shfmt', 'shellcheck' },
-          zsh = { 'shfmt', 'shellcheck' },
-          sh = { 'shfmt', 'shellcheck' },
+          lua = { "stylua" },
+          bash = { "shfmt" },
+          zsh = { "shfmt" },
+          sh = { "shfmt" },
         },
-      })
 
-      local augroup = vim.api.nvim_create_augroup("FormatOnSave", { clear = true })
-
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        pattern = { "*.js", "*.ts", "*.jsx", "*.tsx", "*.html", "*.css", "*.json", "*.bash", "*.zsh", "*.sh" },
-        group = augroup,
-
-        callback = function(args)
-          conform.format({ bufnr = args.buf, timeout_ms = 5000 })
-        end,
+        format_on_save = {
+          lsp_fallback = true,
+          async = false,
+          timeout = 1500,
+        },
       })
     end,
   },
