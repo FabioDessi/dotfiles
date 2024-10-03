@@ -9,15 +9,34 @@ return {
 
   config = function()
     local telescope = require('telescope')
+    local actions = require("telescope.actions")
 
     telescope.setup({
+      defaults = {
+        mappings = {
+          i = {
+            ["<C-s>"] = actions.cycle_previewers_next,
+            ["<C-a>"] = actions.cycle_previewers_prev,
+          },
+        }
+      },
+
       pickers = {
         find_files = {
           hidden = true,
           file_ignore_patterns = { '%.git/' }
         },
+
         buffers = {
-          hidden = true
+          hidden = true,
+          ignore_current_buffer = true,
+          sort_lastused = true,
+
+          mappings = {
+            i = {
+              ["<C-d>"] = actions.delete_buffer + actions.move_to_top,
+            }
+          }
         },
       },
     })
