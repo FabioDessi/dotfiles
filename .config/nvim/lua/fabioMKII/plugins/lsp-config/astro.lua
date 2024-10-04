@@ -1,8 +1,8 @@
-local lspconfig = require('lspconfig')
-local cmp_nvim_lsp = require('cmp_nvim_lsp')
-local keymaps = require('fabioMKII.plugins.lsp-config.keymaps')
+local lspconfig = require("lspconfig")
+local cmp_nvim_lsp = require("cmp_nvim_lsp")
+local keymaps = require("fabioMKII.plugins.lsp-config.keymaps")
 
-lspconfig.astro.setup {
+lspconfig.astro.setup({
   capabilities = cmp_nvim_lsp.default_capabilities(),
   filetypes = { "astro" },
 
@@ -16,4 +16,4 @@ lspconfig.astro.setup {
       end,
     })
   end,
-}
+})
