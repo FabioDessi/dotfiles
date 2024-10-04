@@ -33,30 +33,25 @@ return {
           { name = "nvim_lsp" },
           { name = "luasnip" },
           { name = "buffer" },
-          { name = "path" }
+          { name = "path" },
         }),
 
         window = {
           completion = cmp.config.window.bordered(),
-
-          -- FIX: cmp winhighlight styles (still differs from completion)
-          documentation = cmp.config.window.bordered({
-            winhighlight = "Normal:CmpDocNormal,FloatBorder:FloatBorder,Search:None",
-          }),
-
+          documentation = cmp.config.window.bordered(),
         },
       })
 
-      cmp.setup.cmdline(':', {
+      cmp.setup.cmdline(":", {
         mapping = cmp.mapping.preset.cmdline(),
         sources = cmp.config.sources({
-          { name = 'path' },
+          { name = "path" },
           {
-            name = 'cmdline',
+            name = "cmdline",
             option = {
-              ignore_cmds = { 'Man', '!' }
-            }
-          }
+              ignore_cmds = { "Man", "!" },
+            },
+          },
         }),
       })
     end,
