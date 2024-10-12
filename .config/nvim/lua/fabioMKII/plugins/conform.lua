@@ -7,6 +7,12 @@ return {
       local conform = require("conform")
 
       conform.setup({
+        formatters = {
+          prettierd = {
+            require_cwd = true,
+          },
+        },
+
         formatters_by_ft = {
           javascript = { "prettierd" },
           javascriptreact = { "prettierd" },
