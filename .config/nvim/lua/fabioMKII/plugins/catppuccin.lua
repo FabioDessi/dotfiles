@@ -10,29 +10,34 @@ return {
           return {
             LineNr = { fg = mocha.text },
           }
-        end
+        end,
       },
 
       flavour = "mocha",
 
       integrations = {
-        notify = true,
-        treesitter = true,
         cmp = true,
         gitsigns = true,
-        noice = true,
-
         indent_blankline = {
           enabled = true,
-          colored_indent_levels = false
+          colored_indent_levels = false,
         },
 
+        mason = true,
         native_lsp = {
-          enabled = true
-        }
-      }
+          enabled = true,
+        },
+
+        noice = true,
+        notify = true,
+        telescope = {
+          enabled = true,
+        },
+
+        treesitter = true,
+      },
     })
 
-    vim.cmd.colorscheme "catppuccin"
+    vim.cmd.colorscheme("catppuccin")
   end,
 }
