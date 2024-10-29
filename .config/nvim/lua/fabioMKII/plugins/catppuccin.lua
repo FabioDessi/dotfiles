@@ -18,6 +18,7 @@ return {
       integrations = {
         cmp = true,
         gitsigns = true,
+        neotree = true,
         indent_blankline = {
           enabled = true,
           colored_indent_levels = false,

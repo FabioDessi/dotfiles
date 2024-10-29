@@ -21,10 +21,11 @@ return {
         "jsdoc",
         "regex",
         "markdown_inline",
+        "json",
       },
 
       indent = {
-        enable = true
+        enable = true,
       },
 
       sync_install = false,
@@ -37,7 +38,7 @@ return {
 
       ignore_install = {},
 
-      modules = {}
+      modules = {},
     })
-  end
+  end,
 }
