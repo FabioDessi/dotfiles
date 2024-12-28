@@ -119,3 +119,10 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Atuin config
 eval "$(atuin init zsh)"
+
+# Dotnet tools config
+export PATH="$PATH:/Users/fabiod/.dotnet/tools"
+export PATH="/opt/homebrew/opt/dotnet@8/bin:$PATH"
+
+# Go Install path
+export PATH="$PATH:/Users/fabiod/go/bin"
