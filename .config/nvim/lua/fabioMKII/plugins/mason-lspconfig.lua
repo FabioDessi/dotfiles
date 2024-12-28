@@ -18,7 +18,7 @@ return {
           "cssmodules_ls",
           "bashls",
           -- "svelte",
-          -- "gopls",
+          "gopls",
         },
       })
 
@@ -30,7 +30,7 @@ return {
             end,
 
             settings = {},
-            capabilities = require('cmp_nvim_lsp').default_capabilities(),
+            capabilities = require("cmp_nvim_lsp").default_capabilities(),
           })
         end,
 
@@ -47,6 +47,10 @@ return {
         end,
 
         ["astro"] = function(server_name)
+          require("fabioMKII.plugins.lsp-config." .. server_name)
+        end,
+
+        ["gopls"] = function(server_name)
           require("fabioMKII.plugins.lsp-config." .. server_name)
         end,
       })
