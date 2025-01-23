@@ -1,6 +1,6 @@
-local lspconfig = require('lspconfig')
-local cmp_nvim_lsp = require('cmp_nvim_lsp')
-local keymaps = require('fabioMKII.plugins.lsp-config.keymaps')
+local lspconfig = require("lspconfig")
+local cmp_nvim_lsp = require("cmp_nvim_lsp")
+local keymaps = require("fabioMKII.plugins.lsp-config.keymaps")
 
 lspconfig.lua_ls.setup({
   on_attach = function(_, bufnr)

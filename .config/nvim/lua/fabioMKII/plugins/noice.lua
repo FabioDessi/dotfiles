@@ -13,17 +13,26 @@ return {
   },
 
   config = function()
+    require("notify").setup({
+      background_colour = "#000000", -- or any color you prefer
+      render = "wrapped-compact",
+      stages = "fade",
+    })
+
     require("noice").setup({
       -- FIX: Code actions window bocked
       lsp = {
         hover = {
           silent = true,
+          enabled = true,
+          view = nil,
+          opts = {},
         },
 
         override = {
           ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
           ["vim.lsp.util.stylize_markdown"] = true,
-          ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+          ["cmp.entry.get_documentation"] = true,
         },
       },
 

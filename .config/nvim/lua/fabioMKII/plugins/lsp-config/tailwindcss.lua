@@ -1,8 +1,8 @@
-local lspconfig = require('lspconfig')
-local cmp_nvim_lsp = require('cmp_nvim_lsp')
-local keymaps = require('fabioMKII.plugins.lsp-config.keymaps')
+local lspconfig = require("lspconfig")
+local cmp_nvim_lsp = require("cmp_nvim_lsp")
+local keymaps = require("fabioMKII.plugins.lsp-config.keymaps")
 
-lspconfig.tailwindcss.setup {
+lspconfig.tailwindcss.setup({
   on_attach = function(_, bufnr)
     keymaps.set_lsp_keybindings(bufnr)
   end,
@@ -17,4 +17,4 @@ lspconfig.tailwindcss.setup {
     )
     return root_pattern(fname)
   end,
-}
+})
