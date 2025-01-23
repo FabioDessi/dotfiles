@@ -126,3 +126,7 @@ export PATH="/opt/homebrew/opt/dotnet@8/bin:$PATH"
 
 # Go Install path
 export PATH="$PATH:/Users/fabiod/go/bin"
+
+# 1Password autocomplete
+eval "$(op completion zsh)"
+compdef _op op
