@@ -128,5 +128,6 @@ export PATH="/opt/homebrew/opt/dotnet@8/bin:$PATH"
 export PATH="$PATH:/Users/fabiod/go/bin"
 
 # 1Password autocomplete
+autoload -U compinit && compinit
 eval "$(op completion zsh)"
 compdef _op op
