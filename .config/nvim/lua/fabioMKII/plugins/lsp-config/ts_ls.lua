@@ -58,6 +58,7 @@ lspconfig.ts_ls.setup({
       range = true,
     }
   end,
+
   capabilities = cmp_nvim_lsp.default_capabilities(),
   settings = {
     typescript = {
