@@ -14,6 +14,9 @@ return {
           padding = 1,
         },
       },
+      filters = {
+        git_ignored = false,
+      },
     })
 
     vim.keymap.set("n", "<leader>n", ":NvimTreeFindFile<CR>", { noremap = true, silent = true })

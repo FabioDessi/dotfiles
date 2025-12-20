@@ -8,13 +8,12 @@ lspconfig.tailwindcss.setup({
   end,
 
   capabilities = cmp_nvim_lsp.default_capabilities(),
-  root_dir = function(fname)
-    local root_pattern = lspconfig.util.root_pattern(
-      "tailwind.config.cjs",
-      "tailwind.config.mjs",
-      "tailwind.config.js",
-      "postcss.config.js"
-    )
-    return root_pattern(fname)
-  end,
+
+  settings = {
+    tailwindCSS = {
+      experimental = {
+        configFile = "src/styles/global.css", -- Point to CSS file
+      },
+    },
+  },
 })
